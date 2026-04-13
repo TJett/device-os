@@ -201,7 +201,7 @@ void PowerManager::init() {
     return;
   }
 
-  hal_i2c_acquire(HAL_PLATFORM_PMIC_BQ24195_I2C, nullptr);
+  hal_i2c_acquire(HAL_PLATFORM_PMIC_BQ24195_I2C, HAL_I2C_ACQUIRE_PMIC | HAL_I2C_ACQUIRE_FUELGAUGE, nullptr);
 
   // IMPORTANT: attach the interrupt handler first
 #if HAL_PLATFORM_PMIC_INT_PIN_PRESENT
@@ -988,7 +988,7 @@ void PowerManager::deinit() {
     }
   }
 
-  hal_i2c_release(HAL_PLATFORM_PMIC_BQ24195_I2C, nullptr);
+  hal_i2c_release(HAL_PLATFORM_PMIC_BQ24195_I2C, HAL_I2C_ACQUIRE_PMIC | HAL_I2C_ACQUIRE_FUELGAUGE, nullptr);
 
 #if HAL_PLATFORM_PMIC_INT_PIN_PRESENT
 #if HAL_PLATFORM_SHARED_INTERRUPT
